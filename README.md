@@ -23,11 +23,12 @@ Depuis le dossier `Ducktective` (en conservant `js/`, `css/` et `assets/` ensemb
 python3 -m http.server 8765
 ```
 
-Ouvrir http://localhost:8765/findduck.html dans un navigateur de bureau récent.
+Ouvrir http://localhost:8765/ dans un navigateur de bureau récent.
+Le serveur ouvre automatiquement `index.html`.
 Three.js 0.160.0 est chargé depuis jsDelivr ; les textures et modèles sont locaux.
 Tous les chemins locaux sont relatifs : le dossier complet peut être déplacé
-sans modifier le code. Le fichier d'entrée reste `findduck.html` pour conserver
-les liens existants ; le titre de l'onglet et le menu affichent « Ducktective ».
+sans modifier le code. Le fichier d'entrée est `index.html` ; le titre de
+l'onglet et le menu affichent « Ducktective ».
 Ouvrir le jeu via un serveur HTTP, pas en double-cliquant sur le fichier HTML.
 Après une mise à jour, faire un rechargement forcé (`Cmd + Maj + R` sur Mac).
 Dans le menu principal, « Choisir un niveau » permet de commencer directement
@@ -59,7 +60,7 @@ Le labyrinthe ne possède plus d'emblèmes signalant les cachettes.
 
 ## Organisation
 
-- `findduck.html` : menus et interface.
+- `index.html` : menus et interface.
 - `css/style.css` : présentation de l'interface.
 - `js/game.js` : niveaux, mouvement, réglages et progression.
 - `js/extra-levels.js` : décors et cachettes des niveaux 4 à 6.
