@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ducktective — Jeu 3D</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🐤%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="loading">Préparation des canards…</div>
+
+  <div id="hud">
+    <div class="topbar">
+      <div class="glass level-card">
+        <div class="level-badge"><span id="levelNumber">01</span></div>
+        <div>
+          <div class="eyebrow">Niveau actuel</div>
+          <div id="levelName">Le salon douillet</div>
+          <div id="levelMechanic">Soulever les coussins</div>
+        </div>
+      </div>
+      <div class="glass duck-counter">
+        <div class="duck-icon">🐤</div>
+        <div>
+          <div id="duckCount">0 / 5</div>
+          <div class="count-label">canards trouvés</div>
+        </div>
+      </div>
+    </div>
+    <div id="crosshair"></div>
+    <div id="interactionPrompt" class="glass" role="status" aria-live="polite"><kbd id="interactionKey">E</kbd><span id="interactionText"></span></div>
+    <div id="crouchIndicator" class="glass">Accroupi</div>
+    <div class="glass bottom-hint">
+      <div class="keys"><kbd id="hudForwardKey">Z</kbd><kbd id="hudLeftKey">Q</kbd><kbd id="hudBackwardKey">S</kbd><kbd id="hudRightKey">D</kbd></div>
+      <span>Se déplacer · Souris pour regarder · Clic pour ramasser</span>
+      <span><kbd id="hudCrouchKey">CTRL</kbd> S’accroupir <kbd id="hudInteractKey">E</kbd> Interagir · Échap Pause</span>
+    </div>
+  </div>
+
+  <div id="toast">Coin coin ! Canard trouvé</div>
+
+  <div id="startOverlay" class="overlay active">
+    <div class="menu">
+      <div class="hero-duck">🐤</div>
+      <div class="eyebrow">6 niveaux · 30 canards à retrouver</div>
+      <h1>Duck<span>tective</span></h1>
+      <p class="subtitle">Cinq petits canards se cachent dans chacun des six décors. Soulève les coussins, ouvre les valises et découvre un passage secret : vise un objet puis interagis. Les canards se ramassent toujours au clic.</p>
+      <div class="controls">
+        <div class="control-item"><strong id="movementKeysLabel">Z Q S D</strong>Se déplacer</div>
+        <div class="control-item"><strong>SOURIS</strong>Regarder autour</div>
+        <div class="control-item"><strong>CLIC GAUCHE</strong>Ramasser</div>
+      </div>
+      <div class="exploration-controls"><span><kbd id="menuCrouchKey">CTRL</kbd> Maintenir pour s’accroupir</span><span><kbd id="menuInteractKey">E</kbd> Manipuler les objets</span></div>
+      <div class="level-selection">
+        <label for="levelSelect">Choisir un niveau</label>
+        <select id="levelSelect" aria-describedby="levelSelectionHint"></select>
+        <p id="levelSelectionHint">Tous les niveaux sont accessibles, même le labyrinthe.</p>
+      </div>
+      <button id="startButton">Commencer la chasse</button>
+      <button class="secondary-button settings-open" data-return="startOverlay">⚙️ Paramètres</button>
+      <div class="small-note">Le clic active la souris dans le jeu</div>
+    </div>
+  </div>
+
+  <div id="pauseOverlay" class="overlay">
+    <div class="menu">
+      <div class="hero-duck">⏸️</div>
+      <div class="eyebrow">Partie en pause</div>
+      <h2>Les canards attendent.</h2>
+      <p class="subtitle">Clique pour reprendre exactement où tu en étais.</p>
+      <button id="resumeButton">Reprendre la partie</button>
+      <button class="secondary-button settings-open" data-return="pauseOverlay">⚙️ Paramètres</button>
+    </div>
+  </div>
+
+  <div id="settingsOverlay" class="overlay">
+    <div class="menu settings-menu">
+      <div class="settings-icon">⚙️</div>
+      <div class="eyebrow">Personnalisation</div>
+      <h2>Paramètres</h2>
+      <p class="settings-intro">Clique sur une touche pour la modifier, puis appuie sur la nouvelle touche.</p>
+
+      <div class="settings-list">
+        <div class="setting-row">
+          <div><strong>Avancer</strong><span>Déplacement vers l’avant</span></div>
+          <button class="key-bind" data-action="forward">Z</button>
+        </div>
+        <div class="setting-row">
+          <div><strong>Reculer</strong><span>Déplacement vers l’arrière</span></div>
+          <button class="key-bind" data-action="backward">S</button>
+        </div>
+        <div class="setting-row">
+          <div><strong>Aller à gauche</strong><span>Déplacement latéral gauche</span></div>
+          <button class="key-bind" data-action="left">Q</button>
+        </div>
+        <div class="setting-row">
+          <div><strong>Aller à droite</strong><span>Déplacement latéral droit</span></div>
+          <button class="key-bind" data-action="right">D</button>
+        </div>
+        <div class="setting-row">
+          <div><strong>S’accroupir</strong><span>Maintenir pour regarder sous les meubles</span></div>
+          <button class="key-bind" data-action="crouch">CTRL</button>
+        </div>
+        <div class="setting-row">
+          <div><strong>Interagir</strong><span>Rangements, valises, coussins, draps et mécanismes</span></div>
+          <button class="key-bind" data-action="interact">E</button>
+        </div>
+        <div class="setting-row sensitivity-row">
+          <div><strong>Sensibilité caméra</strong><span>Vitesse de rotation de la souris</span></div>
+          <output id="sensitivityValue">1,00×</output>
+          <input id="sensitivitySlider" type="range" min="0.35" max="2.5" step="0.05" value="1" aria-label="Sensibilité de la caméra">
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button id="resetSettings" class="secondary-button">Réinitialiser</button>
+        <button id="closeSettings">Retour</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="completeOverlay" class="overlay">
+    <div class="menu">
+      <div id="completeIcon">✨</div>
+      <div class="eyebrow" id="completeEyebrow">Niveau terminé</div>
+      <h2 id="completeTitle">Tous retrouvés !</h2>
+      <p id="completeStats">5 canards retrouvés</p>
+      <button id="nextButton">Niveau suivant</button>
+    </div>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="./js/game.js"></script>
+</body>
+</html>
