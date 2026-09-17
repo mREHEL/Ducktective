@@ -1,0 +1,100 @@
+/* Bureau d'enquête : styles limités au menu principal. */
+#startOverlay {
+  background: radial-gradient(ellipse at 12% 55%, #29413d66, transparent 55%), radial-gradient(ellipse at 88% 18%, #71633726, transparent 45%), #080f18ed;
+  overflow-y: auto;
+  padding: 28px;
+}
+#startOverlay::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.16; background-image:linear-gradient(#b8c4b512 1px,transparent 1px),linear-gradient(90deg,#b8c4b512 1px,transparent 1px); background-size:44px 44px; mask-image:radial-gradient(ellipse,black,transparent 80%); }
+#startOverlay .detective-menu { position:relative; width:min(1120px,100%); max-height:none; overflow:visible; padding:28px 38px 22px; border-radius:26px; background:linear-gradient(130deg,#152322f5,#101925fa 55%); border-color:#e4d6b21c; text-align:left; box-shadow:0 35px 100px #0006,inset 0 1px #e2d5b214; }
+.detective-header { display:flex; align-items:center; justify-content:space-between; gap:18px; padding-bottom:23px; border-bottom:1px solid #d2cbb41c; }
+.agency-mark { display:flex; align-items:center; gap:12px; font-size:11px; font-weight:800; letter-spacing:.14em; line-height:1.6; }
+.agency-mark small { font-size:8px; font-weight:500; letter-spacing:.15em; color:#bcc6bd80; }
+.agency-seal { display:grid; place-items:center; width:38px; height:38px; border:1px solid #d3b56b70; border-radius:50%; color:#e9ca80; font:italic bold 22px Georgia,serif; letter-spacing:-.08em; }
+.agency-status { display:flex; align-items:center; gap:7px; color:#bfccbf99; font-size:10px; white-space:nowrap; }
+.agency-status i { width:5px; height:5px; border-radius:50%; background:#accbaa; box-shadow:0 0 12px #accbaa55; }
+.detective-layout { display:grid; grid-template-columns:1fr 1.12fr; gap:48px; padding:28px 0; }
+.detective-intro { min-width:0; }
+.case-tag { font:10px ui-monospace,monospace; letter-spacing:.1em; color:#ddc185; }
+.case-tag > span { display:block; margin-top:7px; font-size:8px; color:#b5bfb56b; }
+#startOverlay h1 { font-size:clamp(43px,5.1vw,66px); margin:22px 0 15px; letter-spacing:-.065em; white-space:nowrap; }
+#startOverlay h1 span { color:#f2cc60; }
+#startOverlay h1 .title-period { color:#f2cc6070; }
+.detective-tagline { margin:0; color:#f6f0e3; font:italic 29px/1.2 Georgia,serif; letter-spacing:-.035em; }
+.detective-description { max-width:355px; margin:14px 0 0; font-size:12px; line-height:1.7; color:#bfcbc299; }
+.detective-art { position:relative; height:225px; margin:8px -10px 8px; }
+.detective-art::before { content:""; position:absolute; width:210px; height:210px; left:24%; top:12px; border-radius:50%; background:radial-gradient(circle,#d6b05222,transparent 68%); }
+.detective-duck { position:absolute; width:100%; height:100%; left:8px; top:0; transform:rotate(-5deg); animation:duck-drift 7s ease-in-out infinite; }
+.art-orbit { position:absolute; border:1px solid #d6ba6826; border-radius:50%; width:180px; height:180px; left:25%; top:20px; }
+.orbit-two { width:222px; height:222px; left:20%; top:0; border-style:dashed; opacity:.45; }
+.evidence-note { position:absolute; left:0; bottom:15px; width:175px; padding:12px; transform:rotate(-7deg); background:#d8cba4; color:#3c4238; box-shadow:0 7px 20px #0004; z-index:1; }
+.evidence-note::before { content:""; position:absolute; width:50px; height:15px; top:-8px; left:55px; background:#b7b7958c; transform:rotate(4deg); }
+.evidence-note span { display:block; font:7px ui-monospace,monospace; letter-spacing:.1em; }
+.evidence-note strong { display:block; margin:7px 0; font:italic 14px/1.2 Georgia,serif; }
+.evidence-note small { font-size:7px; opacity:.65; }
+.evidence-stamp { position:absolute; right:6px; top:40px; transform:rotate(12deg); padding:5px 9px; border:2px solid #c29e645e; color:#c29e648c; font:9px ui-monospace,monospace; letter-spacing:.14em; }
+.case-stats { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #d2cbb41c; padding-top:17px; }
+.case-stats > div+div { border-left:1px solid #d2cbb41c; padding-left:20px; }
+.case-stats strong { display:block; font:25px Georgia,serif; color:#e4cf9a; }
+.case-stats span { display:block; margin-top:5px; font-size:9px; color:#b7c3b780; }
+.case-board { min-width:0; }
+.board-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.menu-kicker { color:#c4b58c; font-size:8px; letter-spacing:.2em; font-weight:700; }
+.board-heading h2 { margin:7px 0 0; font-size:23px; letter-spacing:-.045em; }
+.board-count { color:#c4b58c66; font:10px ui-monospace,monospace; }
+.level-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+#startOverlay .dossier-card { --card-tint:#c5a675; width:100%; min-width:0; padding:13px 14px 10px; border:1px solid #d8d7c319; border-radius:11px; background:linear-gradient(130deg,color-mix(in srgb,var(--card-tint) 8%,transparent),#ffffff02); color:#f3eee0; text-align:left; box-shadow:none; font-weight:400; letter-spacing:normal; transition:background .2s,border-color .2s,transform .2s; }
+#startOverlay .dossier-card:hover { transform:translateY(-2px); border-color:#d8c78566; filter:none; }
+#startOverlay .dossier-card.selected { border-color:#e5c563b3; background:linear-gradient(130deg,#e5c56316,#e5c56306); box-shadow:inset 0 0 0 1px #e5c56312; }
+.dossier-top { display:flex; gap:8px; align-items:center; }
+.dossier-icon { display:grid; place-items:center; width:23px; height:23px; border-radius:6px; background:color-mix(in srgb,var(--card-tint) 14%,transparent); color:var(--card-tint); font-size:17px; }
+.dossier-number { font:8px ui-monospace,monospace; color:#bcc9bc80; letter-spacing:.07em; }
+.dossier-check { margin-left:auto; color:#e5c563; font-size:12px; opacity:0; }
+.selected .dossier-check { opacity:1; }
+.dossier-name { display:block; margin-top:9px; font-size:13px; font-weight:700; }
+.dossier-detail { display:block; margin-top:4px; color:#bdc8bd73; font-size:9px; line-height:1.4; }
+.dossier-bottom { display:flex; justify-content:space-between; align-items:center; margin-top:10px; color:var(--card-tint); font-size:8px; }
+.dossier-marks { display:flex; gap:3px; }
+.dossier-marks i { width:4px; height:4px; border-radius:50%; background:currentColor; opacity:.6; }
+#startOverlay .theme-atelier { --card-tint:#9dbbc5; } #startOverlay .theme-serre { --card-tint:#a6bf98; } #startOverlay .theme-grenier { --card-tint:#c2a991; } #startOverlay .theme-bibliotheque { --card-tint:#b0a6c9; } #startOverlay .theme-labyrinthe { --card-tint:#d3a382; }
+#startOverlay .level-selection { margin:18px 0 14px; }
+#startOverlay .level-selection label { font-size:9px; font-weight:500; color:#bac4b28c; margin-bottom:7px; }
+#startOverlay .level-selection select { padding:10px 12px; border-color:#d8d7c324; background:#0f1922; font-size:11px; border-radius:9px; }
+#startOverlay .level-selection p { min-height:26px; margin:8px 0 0; font-size:9px; line-height:1.5; color:#b7c3b773; }
+.case-actions { display:grid; grid-template-columns:1.4fr 1fr; gap:9px; }
+#startOverlay #startButton { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-radius:10px; background:linear-gradient(110deg,#f3d17a,#dab153); box-shadow:0 6px 24px #d9b05d1a; font-size:12px; color:#263027; }
+#startOverlay #startButton:disabled { cursor:wait; opacity:.55; }
+#startOverlay .case-actions .secondary-button { margin:0; padding:12px 10px; border-radius:10px; font-size:11px; background:#ffffff04; border-color:#d8d7c324; color:#c6d0c3; }
+#startOverlay .small-note { font-size:8px; color:#b7c3b759; text-align:center; margin-top:12px; }
+.detective-footer { display:flex; justify-content:space-between; align-items:center; gap:15px; padding-top:18px; border-top:1px solid #d2cbb41c; }
+.brief-controls { display:flex; flex-wrap:wrap; gap:14px; font-size:9px; color:#b9c8bd80; }
+.brief-controls span { display:flex; align-items:center; gap:6px; }
+.brief-controls strong,.brief-controls kbd { color:#c9d2c5; font-size:9px; font-weight:600; }
+.brief-controls kbd { min-width:18px; padding:3px 5px; border:1px solid #c9d2c529; border-radius:4px; background:#ffffff05; }
+.footer-motto { font:7px ui-monospace,monospace; color:#d0bd8b5e; letter-spacing:.14em; white-space:nowrap; }
+@keyframes duck-drift { 0%,100% { transform:translateY(0) rotate(-5deg); } 50% { transform:translateY(-6px) rotate(-3deg); } }
+@media (min-width:701px) and (max-height:800px) {
+  #startOverlay { padding:16px; }
+  #startOverlay .detective-menu { padding:20px 30px 16px; }
+  .detective-header { padding-bottom:15px; }
+  .detective-layout { padding:16px 0; }
+  #startOverlay h1 { margin-top:17px; font-size:54px; }
+  .detective-tagline { font-size:25px; }
+  .detective-art { height:155px; margin-top:0; }
+  .evidence-note { width:150px; padding:9px; bottom:8px; }
+  .evidence-note strong { font-size:12px; }
+  .evidence-stamp { top:20px; right:25px; }
+  .art-orbit { width:135px; height:135px; top:5px; left:35%; }
+  .orbit-two { width:160px; height:160px; top:-6px; left:32%; }
+  #startOverlay .dossier-card { padding:10px 12px 8px; }
+  .dossier-icon { width:20px; height:20px; }
+  .dossier-name { margin-top:7px; }
+  .dossier-bottom { margin-top:7px; }
+  .board-heading { margin-bottom:12px; }
+  #startOverlay .level-selection { margin:12px 0 10px; }
+  #startOverlay .level-selection p { min-height:0; }
+  .detective-footer { padding-top:12px; }
+}
+@media (max-width:900px) { #startOverlay .detective-menu { padding:25px; } .detective-layout { gap:25px; } #startOverlay h1 { font-size:48px; } .footer-motto { display:none; } .detective-art { height:210px; } }
+@media (max-width:700px) { #startOverlay { display:block; padding:16px; } #startOverlay .detective-menu { margin:auto; padding:22px; } .detective-layout { grid-template-columns:1fr; gap:30px; padding:24px 0; } #startOverlay h1 { font-size:clamp(44px,10vw,66px); } .detective-intro { position:relative; } .detective-description { max-width:100%; } .detective-art { max-width:400px; margin:5px auto; height:215px; } .case-stats { padding-top:12px; } .agency-mark small { font-size:6px; } .agency-status { font-size:8px; } .agency-seal { width:30px; height:30px; } .detective-header { padding-bottom:18px; } .brief-controls { gap:12px 15px; } }
+@media (max-width:380px) { #startOverlay .detective-menu { padding:18px; } .agency-status { display:none; } .dossier-detail { font-size:8px; } #startOverlay .dossier-card { padding:11px; } .case-stats > div+div { padding-left:12px; } }
+@media (prefers-reduced-motion:reduce) { .detective-duck { animation:none; } #startOverlay .dossier-card { transition:none; } }

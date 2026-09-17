@@ -6,6 +6,7 @@
   <title>Ducktective — Jeu 3D</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E🐤%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/main-menu.css">
 </head>
 <body>
   <div id="loading">Préparation des canards…</div>
@@ -41,25 +42,61 @@
   <div id="toast">Coin coin ! Canard trouvé</div>
 
   <div id="startOverlay" class="overlay active">
-    <div class="menu">
-      <div class="hero-duck">🐤</div>
-      <div class="eyebrow">6 niveaux · 30 canards à retrouver</div>
-      <h1>Duck<span>tective</span></h1>
-      <p class="subtitle">Cinq petits canards se cachent dans chacun des six décors. Soulève les coussins, ouvre les valises et découvre un passage secret : vise un objet puis interagis. Les canards se ramassent toujours au clic.</p>
-      <div class="controls">
-        <div class="control-item"><strong id="movementKeysLabel">Z Q S D</strong>Se déplacer</div>
-        <div class="control-item"><strong>SOURIS</strong>Regarder autour</div>
-        <div class="control-item"><strong>CLIC GAUCHE</strong>Ramasser</div>
+    <div class="menu detective-menu">
+      <header class="detective-header">
+        <div class="agency-mark"><span class="agency-seal" aria-hidden="true">D.</span><span>DUCKTECTIVE<br><small>BUREAU DES CANARDS DISPARUS</small></span></div>
+        <div class="agency-status"><i aria-hidden="true"></i> Enquête ouverte</div>
+      </header>
+      <div class="detective-layout">
+        <section class="detective-intro" aria-labelledby="gameTitle">
+          <div class="case-tag">AFFAIRE N° 005 <span>EXPLORATION · OBSERVATION</span></div>
+          <h1 id="gameTitle">Duck<span>tective</span><span class="title-period">.</span></h1>
+          <p class="detective-tagline">Petits canards.<br>Grandes cachettes.</p>
+          <p class="detective-description">Chaque pièce a ses secrets. Fouille le décor, manipule les objets et retrouve les cinq canards qui jouent à cache-cache.</p>
+          <div class="detective-art" aria-hidden="true">
+            <span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span>
+            <div class="evidence-note"><span>PIÈCE À CONVICTION</span><strong>Le suspect est en plastique.</strong><small>Ne pas se fier à son air innocent.</small></div>
+            <svg class="detective-duck" viewBox="0 0 440 300" fill="none">
+              <defs>
+                <linearGradient id="duckGold" x1="170" y1="90" x2="260" y2="260" gradientUnits="userSpaceOnUse"><stop stop-color="#fff2a1"/><stop offset=".5" stop-color="#ffd544"/><stop offset="1" stop-color="#d69516"/></linearGradient>
+                <linearGradient id="hatShade" x1="200" y1="37" x2="200" y2="108" gradientUnits="userSpaceOnUse"><stop stop-color="#354b49"/><stop offset="1" stop-color="#162b2b"/></linearGradient>
+                <filter id="duckShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000" flood-opacity=".3"/></filter>
+              </defs>
+              <ellipse cx="226" cy="268" rx="112" ry="15" fill="#050d15" opacity=".45"/>
+              <g filter="url(#duckShadow)">
+                <path d="M128 190c-28 6-48-9-57-26-2 37 12 69 49 82 50 22 135 15 171-20 24-25 17-66-18-82-26-11-42-4-61-9-21-6-39-9-54 8-11 12-18 30-30 47Z" fill="url(#duckGold)"/>
+                <circle cx="216" cy="113" r="63" fill="url(#duckGold)"/>
+                <path d="M263 113c26-4 44 5 52 17-16 17-36 23-57 16l-6-16 11-17Z" fill="#ee932b"/>
+                <path d="M265 132c15 3 30 2 43-2" stroke="#bc641c" stroke-width="3" stroke-linecap="round"/>
+                <ellipse cx="240" cy="112" rx="8" ry="11" fill="#14252a"/><circle cx="243" cy="108" r="2.8" fill="white"/>
+                <path d="M163 175c-25 5-34 33-16 47 16 12 40 9 63-6-20 0-31-8-33-18" fill="#e8ae24"/>
+                <path d="M168 174c-18 9-20 24-10 32" stroke="#fff3ae" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+                <ellipse cx="193" cy="82" rx="16" ry="8" transform="rotate(-28 193 82)" fill="#fff7c7" opacity=".8"/>
+                <path d="m159 72 10-30c3-10 16-13 26-8l22 10 22-7c14-4 23 2 26 15l6 31-112-11Z" fill="url(#hatShade)"/>
+                <path d="m164 62 102 9 4 12-110-9 4-12Z" fill="#9a7351"/>
+                <ellipse cx="214" cy="83" rx="78" ry="14" transform="rotate(6 214 83)" fill="#263e3b"/>
+                <path d="m193 159 44-1-18 18-12-7-18 9 4-19Z" fill="#34524b"/><path d="m207 169 14 5-8 33-12-5 6-33Z" fill="#233e37"/>
+              </g>
+              <g transform="rotate(-22 310 222)"><path d="M313 246v38" stroke="#a87835" stroke-width="16" stroke-linecap="round"/><circle cx="313" cy="211" r="39" fill="#94c5c3" fill-opacity=".08" stroke="#dcb768" stroke-width="9"/><circle cx="313" cy="211" r="32" stroke="#fff1ba" stroke-opacity=".4" stroke-width="2"/><path d="M291 200c3-9 10-14 19-15" stroke="#d1edef" stroke-opacity=".7" stroke-width="4" stroke-linecap="round"/></g>
+              <path d="m106 104 2-7 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z" fill="#ddbd6d"/><path d="m325 71 2-6 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z" fill="#ddbd6d"/>
+            </svg>
+            <div class="evidence-stamp">À RETROUVER</div>
+          </div>
+          <div class="case-stats"><div><strong>06</strong><span>décors à explorer</span></div><div><strong>30</strong><span>canards cachés</span></div><div><strong>01</strong><span>œil de détective</span></div></div>
+        </section>
+        <section class="case-board" aria-labelledby="caseBoardTitle">
+          <div class="board-heading"><div><div class="menu-kicker">LES DOSSIERS</div><h2 id="caseBoardTitle">Où mène l’enquête ?</h2></div><span class="board-count">01 — 06</span></div>
+          <div id="levelCards" class="level-cards" role="group" aria-label="Choisir un niveau"></div>
+          <div class="level-selection">
+            <label for="levelSelect">Dossier sélectionné</label>
+            <select id="levelSelect" aria-describedby="levelSelectionHint"></select>
+            <p id="levelSelectionHint" aria-live="polite">Tous les niveaux sont accessibles, même le labyrinthe.</p>
+          </div>
+          <div class="case-actions"><button id="startButton"><span>Ouvrir le dossier</span><span aria-hidden="true">↗</span></button><button class="secondary-button settings-open" data-return="startOverlay" aria-label="Ouvrir les paramètres"><span aria-hidden="true">⚙</span> Paramètres</button></div>
+          <div class="small-note">Le clic capture la souris · Échap pour faire une pause</div>
+        </section>
       </div>
-      <div class="exploration-controls"><span><kbd id="menuCrouchKey">CTRL</kbd> Maintenir pour s’accroupir</span><span><kbd id="menuInteractKey">E</kbd> Manipuler les objets</span></div>
-      <div class="level-selection">
-        <label for="levelSelect">Choisir un niveau</label>
-        <select id="levelSelect" aria-describedby="levelSelectionHint"></select>
-        <p id="levelSelectionHint">Tous les niveaux sont accessibles, même le labyrinthe.</p>
-      </div>
-      <button id="startButton">Commencer la chasse</button>
-      <button class="secondary-button settings-open" data-return="startOverlay">⚙️ Paramètres</button>
-      <div class="small-note">Le clic active la souris dans le jeu</div>
+      <footer class="detective-footer"><div class="brief-controls"><span><strong id="movementKeysLabel">Z Q S D</strong> Se déplacer</span><span><strong>SOURIS</strong> Observer</span><span><strong>CLIC</strong> Ramasser</span><span><kbd id="menuCrouchKey">CTRL</kbd> S’accroupir</span><span><kbd id="menuInteractKey">E</kbd> Interagir</span></div><span class="footer-motto">CHERCHEZ BIEN. ILS SONT LÀ.</span></footer>
     </div>
   </div>
 

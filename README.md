@@ -33,6 +33,12 @@ Ouvrir le jeu via un serveur HTTP, pas en double-cliquant sur le fichier HTML.
 Après une mise à jour, faire un rechargement forcé (`Cmd + Maj + R` sur Mac).
 Dans le menu principal, « Choisir un niveau » permet de commencer directement
 dans l'un des six décors. La partie continue ensuite vers les niveaux suivants.
+Le menu prend la forme d'un bureau d'enquête : canard-détective illustré,
+six cartes de dossiers et palette bleu nuit / dorée. Cliquer sur une carte
+ou utiliser la liste « Dossier sélectionné », puis « Ouvrir le dossier ».
+Les cartes fonctionnent aussi au clavier (Tab, Entrée ou Espace).
+Sur les petits écrans, le menu passe en une colonne et reste défilable.
+L'animation de l'illustration respecte la préférence de mouvement réduit.
 
 ## Commandes par défaut
 
@@ -62,6 +68,8 @@ Le labyrinthe ne possède plus d'emblèmes signalant les cachettes.
 
 - `index.html` : menus et interface.
 - `css/style.css` : présentation de l'interface.
+- `css/main-menu.css` : identité visuelle et disposition adaptative du menu principal.
+- `js/main-menu.js` : cartes de niveaux, icônes et état de sélection du menu.
 - `js/game.js` : niveaux, mouvement, réglages et progression.
 - `js/extra-levels.js` : décors et cachettes des niveaux 4 à 6.
 - `js/attic.js` : architecture spécifique du grenier, textures procédurales
@@ -124,3 +132,7 @@ chargement des six niveaux depuis l'URL complète (y compris l'espace dans
 `find duck`), modèles GLB, textures, styles et modules vérifiés sans erreur HTTP,
 JavaScript ou de rendu. Les touches et la sensibilité restent sauvegardées
 avec la clé historique, même après le changement de nom du jeu.
+Après la refonte du menu : sélection des six cartes, synchronisation avec la
+liste, activation clavier, conservation du dossier après les paramètres,
+affichage du raccourci personnalisé, lancement et pause revérifiés dans Chrome.
+Les dispositions 1440 px, 1280 px, 768 px, 390 px et 320 px ont été inspectées.

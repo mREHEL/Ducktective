@@ -12,6 +12,7 @@ import { createDetailedSofa, createPillow, createBook, createMug, createBotanica
 import { additionalLevels, buildAdditionalLevel } from './extra-levels.js';
 import { createAtticRoom } from './attic.js';
 import { buildExploration } from './exploration.js';
+import { createMainMenu } from './main-menu.js';
 
 (() => {
   'use strict';
@@ -36,6 +37,7 @@ import { buildExploration } from './exploration.js';
   let rebindingAction=null;
 
   let scene, camera, renderer, composer, bloomPass, occlusionPass, clock;
+  let mainMenu;
   let interactionSystem, environmentMotion;
   let indoorEnvironment, gardenEnvironment;
   let isCrouching=false, blockedToastAt=0;
@@ -147,6 +149,10 @@ import { buildExploration } from './exploration.js';
 
     const query = new URLSearchParams(location.search);
     levels.forEach((level,index)=>$('levelSelect').add(new Option(`${String(index+1).padStart(2,'0')} — ${level.name}`,String(index))));
+    mainMenu=createMainMenu(levels,index=>{
+      $('levelSelect').value=String(index);
+      $('levelSelect').dispatchEvent(new Event('change'));
+    });
     const previewLevel = Math.max(0,Math.min(levels.length-1,Number(query.get('level'))||0));
     buildLevel(previewLevel);
     if (query.has('preview')) {
@@ -191,6 +197,7 @@ import { buildExploration } from './exploration.js';
         return;
       }
       if(e.target instanceof HTMLSelectElement)return;
+      if(e.target instanceof HTMLElement && e.target.closest('#startOverlay') && startOverlay.classList.contains('active'))return;
       if(e.key==='Escape' && isPlaying && document.pointerLockElement===renderer.domElement) {
         document.exitPointerLock();
         return;
@@ -442,6 +449,7 @@ import { buildExploration } from './exploration.js';
     $('levelName').textContent = data.name;
     $('levelMechanic').textContent=data.mechanic;
     $('levelSelectionHint').textContent=data.mechanic+'. Tous les niveaux sont accessibles.';
+    mainMenu?.selectLevel(index);
     updateCounter();
     camera.position.copy(player.position);
   }
